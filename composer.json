@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "rikukukkaniemi/speed-typer-frontend",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "Frontend for Speed Typer application",
+    "keywords": ["laravel", "vue"],
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
