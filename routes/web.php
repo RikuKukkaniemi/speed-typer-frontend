@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HighscoreController;
+use App\Http\Controllers\WordsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('app');
 });
+
+Route::get('/words/{language}', [WordsController::class, 'getWords']);
+Route::get('/highscores', [HighscoreController::class, 'getHighscores']);
+
+Route::post('/highscores', [HighscoreController::class, 'postHighscore']);
