@@ -22,20 +22,7 @@ services:
         networks:
             - sail
         depends_on:
-            - redis
             - selenium
-    redis:
-        image: 'redis:alpine'
-        ports:
-            - '${FORWARD_REDIS_PORT:-6379}:6379'
-        volumes:
-            - 'sailredis:/data'
-        networks:
-            - sail
-        healthcheck:
-            test: ["CMD", "redis-cli", "ping"]
-            retries: 3
-            timeout: 5s
     selenium:
         image: 'selenium/standalone-chrome'
         volumes:
@@ -45,6 +32,3 @@ services:
 networks:
     sail:
         driver: bridge
-volumes:
-    sailredis:
-        driver: local
