@@ -2,7 +2,7 @@
 
 This is a frontend for Speed Typer application.
 
-Speed Typer is a game that runs in a web browser. The idea is to type the words you as precisely as you can before timer runs out. The more words you get correct the more points you get.
+Speed Typer is a game that runs in a web browser. The idea is to type the words you as precisely as you can before timer runs out. The points are determined on how precisely you type the words.
 
 Application is dockerized and runs in cloud.
 
