@@ -48,7 +48,7 @@
           </div>
 
           <div class="row justify-content-center align-items-center">
-            <input class="col-2 m-3" type="submit" value="Start Game" />
+            <input class="col-2 m-3 bg-light" type="submit" value="Start Game" />
           </div>
         </form>
       </div>
