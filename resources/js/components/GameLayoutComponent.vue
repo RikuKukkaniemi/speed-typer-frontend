@@ -6,8 +6,7 @@
     <div v-if="!gameRunning">
       <div class="row justify-content-center mb-4">
         <p class="text-center col-4">
-          Type the words you as precies as you can before timer runs out. The
-          more words you you get correct the more points you get.
+            Type the words you as precisely as you can before timer runs out. The more words you get correct the more points you get.
         </p>
         <p class="text-center">Good luck!</p>
       </div>
