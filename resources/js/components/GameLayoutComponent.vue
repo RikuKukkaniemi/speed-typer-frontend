@@ -5,7 +5,7 @@
     </div>
     <div v-if="!gameRunning">
       <div class="row justify-content-center mb-4">
-        <p class="text-center col-4">
+        <p class="text-center col-auto col-lg-5">
             Type the words you as precisely as you can before timer runs out. The points are determined on how precisely you type the words.
         </p>
         <p class="text-center">Good luck!</p>
@@ -13,7 +13,7 @@
 
       <div class="row justify-content-center align-items-center">
         <div class="row justify-content-center">
-          <p class="col-4 text-center">Select the language of words:</p>
+          <p class="col-auto text-center">Select the language of words:</p>
         </div>
         <form class="mt-1" @submit.prevent="startGame">
           <div class="row justify-content-center align-items-center">
