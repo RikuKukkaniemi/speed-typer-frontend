@@ -17,7 +17,7 @@
         </div>
         <form class="mt-1" @submit.prevent="startGame">
           <div class="row justify-content-center align-items-center">
-            <div class="col-1">
+            <div class="col-auto">
               <div class="form-check">
                 <input
                   class="form-check-input"
@@ -31,7 +31,7 @@
                 <label class="form-check-label" for="radioEn"> English </label>
               </div>
             </div>
-            <div class="col-1">
+            <div class="col-auto">
               <div class="form-check">
                 <input
                   class="form-check-input"
@@ -47,7 +47,7 @@
           </div>
 
           <div class="row justify-content-center align-items-center">
-            <input class="col-2 m-3 bg-light" type="submit" value="Start Game" />
+            <input class="col-auto m-3 bg-light" type="submit" value="Start Game" />
           </div>
         </form>
       </div>
@@ -58,21 +58,21 @@
     >
       <div class="row justify-content-center align-items-center">
         <span
-          class="badge rounded-pill fs-5 col-1 m-4"
+          class="badge rounded-pill fs-5 col-auto m-4"
           v-bind:class="timer > 9 ? 'bg-info' : 'bg-warning'"
         >
           {{ timer }}
         </span>
       </div>
       <div class="row justify-content-center align-items-center">
-        <span class="badge bg-secondary fs-4 col-3">{{
+        <span class="badge bg-secondary fs-4 col-lg-3 col-auto">{{
           words[currentWordIndex]
         }}</span>
       </div>
       <div
         class="row form-floating m-3 justify-content-center align-items-center"
       >
-        <div class="col-4">
+        <div class="col-auto">
           <input
             type="text"
             class="form-control fs-3 text-center"
@@ -85,10 +85,10 @@
         </div>
       </div>
       <div class="row justify-content-center align-items-center">
-        <button class="col-2 m-4 bg-light" v-on:click="startGame">
+        <button class="col-lg-2 col-auto m-4 bg-light" v-on:click="startGame">
           Restart
         </button>
-        <button class="col-2 m-4 bg-light" v-on:click="quitGame">
+        <button class="col-lg-2 col-auto m-4 bg-light" v-on:click="quitGame">
           Main Menu
         </button>
       </div>
@@ -112,7 +112,7 @@
           <p class="text-center fs-5">That is a new highscore!</p>
           <form @submit.prevent="addNewHighscore">
             <div class="row justify-content-center align-items-center">
-              <div class="col-3">
+              <div class="col-auto">
                 <label for="userNameInput" class="form-label"
                   >Enter username:</label
                 >
@@ -127,7 +127,7 @@
                 </span>
               </div>
               <div class="row justify-content-center align-items-center">
-                <button type="submit" class="btn btn-primary col-1 m-2">
+                <button type="submit" class="btn btn-primary col-auto m-2">
                   Submit
                 </button>
               </div>
@@ -135,10 +135,10 @@
           </form>
         </div>
         <div v-else class="row justify-content-center align-items-center">
-          <button class="col-2 m-4 bg-info" v-on:click="startGame">
+          <button class="col-auto m-4 bg-info" v-on:click="startGame">
             Play Again
           </button>
-          <button class="col-2 m-4 bg-info" v-on:click="quitGame">
+          <button class="col-auto m-4 bg-info" v-on:click="quitGame">
             Main Menu
           </button>
         </div>
