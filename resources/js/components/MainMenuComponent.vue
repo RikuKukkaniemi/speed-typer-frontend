@@ -12,7 +12,10 @@
       <div class="row justify-content-center">
         <p class="col-auto text-center">Select the language of words:</p>
       </div>
-      <form class="mt-1" @submit.prevent="$emit('chooseLanguage', wordLanguage)">
+      <form
+        class="mt-1"
+        @submit.prevent="$emit('chooseLanguage', wordLanguage)"
+      >
         <div class="row justify-content-center align-items-center">
           <div class="col-auto">
             <div class="form-check">
@@ -57,10 +60,10 @@
 
 <script>
 export default {
-    data() {
+  data() {
     return {
       wordLanguage: "en",
     };
   },
-}
+};
 </script>
