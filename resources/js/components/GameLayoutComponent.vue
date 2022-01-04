@@ -59,78 +59,24 @@
       </div>
     </div>
     <div v-if="gameEnded">
-      <div class="row justify-content-center align-items-center">
-        <p class="text-center">Your score was:</p>
-        <p class="fw-bold fs-4 text-center">{{ points }}</p>
-        <div class="mb-3" v-if="newHighscore">
-          <p class="text-center fs-5">That is a new highscore!</p>
-          <form @submit.prevent="addNewHighscore">
-            <div class="row justify-content-center align-items-center">
-              <div class="col-auto">
-                <label for="userNameInput" class="form-label"
-                  >Enter username:</label
-                >
-                <input
-                  type="text"
-                  class="form-control invalid"
-                  id="userNameInput"
-                  v-model="userName"
-                />
-                <span v-if="!userNameIsValid" class="badge bg-danger">
-                  Username must be between 1 and 20 characters.
-                </span>
-              </div>
-              <div class="row justify-content-center align-items-center">
-                <button type="submit" class="btn btn-primary col-auto m-2">
-                  Submit
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div v-else class="row justify-content-center align-items-center">
-          <button class="col-auto m-4 bg-info" v-on:click="startGame">
-            Play Again
-          </button>
-          <button class="col-auto m-4 bg-info" v-on:click="quitGame">
-            Main Menu
-          </button>
-        </div>
-        <div class="mt-2">
-          <h3>Highscores:</h3>
-          <table class="table table-success table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Score</th>
-                <th scope="col">Date</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr v-for="(highscore, index) in highscores" :key="highscore.id">
-                <th scope="row">{{ index + 1 }}</th>
-                <td class="fs-6">{{ highscore.name }}</td>
-                <td class="fs-6">{{ highscore.score }}</td>
-                <td class="fs-6">{{ formatDate(highscore.date) }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <game-ending-component
+        :points="points"
+        :wordLanguage="wordLanguage"
+        @playAgain="startGame"
+        @returnMainMenu="quitGame"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import MainMenuComponent from './MainMenuComponent.vue'
-
-import moment from "moment";
+import MainMenuComponent from "./MainMenuComponent.vue";
+import GameEndingComponent from "./GameEndingComponent.vue";
 
 export default {
   components: {
-    MainMenuComponent
+    MainMenuComponent,
+    GameEndingComponent,
   },
   data() {
     return {
@@ -144,24 +90,19 @@ export default {
       timer: 0,
       timerInterval: 0,
       points: 0,
-      highscores: [],
-      newHighscore: false,
-      userName: "",
-      userNameIsValid: true,
     };
   },
   methods: {
     startGame(wordLanguage) {
       this.words = [];
+      this.wordLanguage = wordLanguage;
       axios.get("/words/" + wordLanguage).then((response) => {
         this.words = response.data.words;
         this.currentWordIndex = 0;
         this.userInput = "";
         this.userInputWords = [];
-        this.newHighscore = false;
         this.points = 0;
         this.startTimer();
-        this.userName = "";
         this.gameEnded = false;
         this.gameRunning = true;
       });
@@ -212,7 +153,7 @@ export default {
     },
     startTimer() {
       clearInterval(this.timerInterval);
-      this.timer = 60;
+      this.timer = 5;
       this.timerInterval = setInterval(() => {
         if (this.timer === 0) {
           clearInterval(this.timerInterval);
@@ -223,34 +164,8 @@ export default {
       }, 1000);
     },
     endGame() {
-      axios.get("/highscores").then((response) => {
-        if (this.points < 0) this.points = 0;
-        this.highscores = response.data;
-        if (
-          this.highscores.length < 10 ||
-          this.highscores.at(-1).score < this.points
-        ) {
-          this.newHighscore = true;
-        }
-
-        this.gameEnded = true;
-      });
-    },
-    addNewHighscore() {
-      this.userName = this.userName.trim();
-      let userNameLength = this.userName.length;
-
-      if ((this.userNameIsValid = userNameLength > 0 && 21 > userNameLength)) {
-        axios
-          .post("/highscores", { name: this.userName, score: this.points })
-          .then((response) => {
-            this.highscores = response.data;
-            this.newHighscore = false;
-          });
-      }
-    },
-    formatDate(date) {
-      return moment(String(date)).format("DD.MM.YYYY");
+      if (this.points < 0) this.points = 0;
+      this.gameEnded = true;
     },
   },
 };
