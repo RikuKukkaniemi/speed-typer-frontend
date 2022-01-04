@@ -13,7 +13,7 @@
 
 <body>
     <div id="app">
-    <game-layout-component></game-layout-component>
+    <layout-component />
     </div>
     <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
 </body>
