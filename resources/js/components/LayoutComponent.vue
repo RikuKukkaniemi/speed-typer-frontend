@@ -12,7 +12,6 @@
     >
       <game-running-component
         :wordLanguage="wordLanguage"
-        :words="words"
         @restartGame="startGame"
         @quitGame="quitGame"
         @endGame="endGame"
@@ -45,19 +44,14 @@ export default {
       gameRunning: false,
       gameEnded: false,
       wordLanguage: "en",
-      words: [],
       points: 0,
     };
   },
   methods: {
     startGame(wordLanguage) {
-      this.words = [];
       this.wordLanguage = wordLanguage;
-      axios.get("/words/" + wordLanguage).then((response) => {
-        this.words = response.data.words;
-        this.gameEnded = false;
-        this.gameRunning = true;
-      });
+      this.gameEnded = false;
+      this.gameRunning = true;
     },
     quitGame() {
       this.gameRunning = false;

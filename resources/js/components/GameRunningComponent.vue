@@ -56,10 +56,10 @@
 export default {
   props: {
     wordLanguage: String,
-    words: Array,
   },
   data() {
     return {
+      words: [],
       currentWordIndex: 0,
       userInput: "",
       userInputWords: [],
@@ -126,7 +126,10 @@ export default {
     },
   },
   mounted: function () {
-    this.startTimer();
+    axios.get("/words/" + this.wordLanguage).then((response) => {
+      this.words = response.data.words;
+      this.startTimer();
+    });
   },
 };
 </script>
