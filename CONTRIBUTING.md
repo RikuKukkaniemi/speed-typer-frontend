@@ -17,3 +17,7 @@ After cloning the project
 ## Create new Docker image
 
 `docker build tag speed-typer-frontend:{VERSION.NUMBER} .`
+
+## Deployment
+
+When commit is pushed to `main` branch the application is automatically deployed to Heroku
