@@ -114,7 +114,7 @@ export default {
     },
     startTimer() {
       clearInterval(this.timerInterval);
-      this.timer = 4;
+      this.timer = 60;
       this.timerInterval = setInterval(() => {
         if (this.timer === 0) {
           clearInterval(this.timerInterval);
